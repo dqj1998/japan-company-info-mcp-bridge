@@ -1,0 +1,23 @@
+japan-company-info-mcp-bridge — NOTICE
+======================================
+
+1. Bridge source code (index.js, package.json)
+   Licensed under the MIT License (see LICENSE).
+
+2. Bundled Orb data — assets/japan-company-info-free.orb.zip
+   Proprietary. © 2026 MCPOrb. Free edition, 192 blue-chip listed companies.
+   Redistribution, resale, or embedding as a downloadable deliverable to third
+   parties is not permitted. The full edition is a one-time purchase at
+   https://mcporb.store/orb/japan-company-info
+
+   Underlying public data is redistributed under each source's terms:
+     - 法人番号公表サイト (National Tax Agency, Japan)
+     - EDINET (Financial Services Agency, Japan)
+     - gBizINFO (Ministry of Economy, Trade and Industry, Japan)
+     - 財務省 法人企業統計調査 (Ministry of Finance, Japan) — full edition only
+
+3. Bundled runtime binary — bin/mcporb-runtime-*
+   Proprietary. © 2026 MCPOrb. Distributed for the purpose of running the
+   bundled Orb only. Not licensed under MIT.
+
+For licensing questions: https://mcporb.store

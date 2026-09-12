@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# OS / editor cruft
+.DS_Store
+*.swp
+
+# Logs & env
+*.log
+.env
+.env.*
+
+# NOTE: bin/ (runtime binaries) and assets/ (Orb bundle) are INTENTIONALLY
+# committed — npx-from-GitHub and npm publish both require them at runtime.
