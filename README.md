@@ -67,14 +67,15 @@ npx .
 
 ## Platform support
 
-Bundled runtime binaries in `bin/`:
+Bundled runtime binaries in `bin/` (no external system libraries required — run on minimal/headless images):
 
-- **macOS (Apple Silicon / arm64)** — `mcporb-runtime-darwin-arm64`
-- **Linux (x86-64)** — `mcporb-runtime-linux-x64` — no external system libraries required (runs on
-  minimal/headless images).
+- **macOS Apple Silicon (arm64)** — `mcporb-runtime-darwin-arm64`
+- **Linux x86-64** — `mcporb-runtime-linux-x64`
+- **Linux arm64** — `mcporb-runtime-linux-arm64`
+- **Windows x64** — `mcporb-runtime-win32-x64.exe`
 
-Other targets (Linux arm64, Windows, macOS Intel) aren't bundled yet. `index.js` resolves
-`mcporb-runtime-<platform>-<arch>` and exits with a clear message if no matching binary is found.
+Not bundled: macOS Intel (x86-64). `index.js` resolves `mcporb-runtime-<platform>-<arch>` and exits
+with a clear message if no matching binary is found.
 
 ## Example queries
 
