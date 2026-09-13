@@ -1,0 +1,5 @@
+.git
+.gitignore
+# Non-linux binaries aren't used inside the linux image
+bin/mcporb-runtime-darwin-arm64
+bin/mcporb-runtime-win32-x64.exe
