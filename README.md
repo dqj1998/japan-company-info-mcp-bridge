@@ -1,14 +1,18 @@
 # Japan Company Info — MCP Server (Free Edition)
 
-Verified **Japanese corporate data** for Claude, Cursor, and any MCP client — served locally
-over stdio. Query **EDINET** statutory filings (XBRL 5-year financials), **National Tax Agency**
-13-digit corporate numbers, major shareholders, and **gBizINFO** certifications/subsidies, with a
-built-in **J-GAAP / US GAAP / IFRS** mapping dictionary.
+The only **100% OFFLINE**, all-in-one Japanese Corporate Due Diligence MCP. Integrates **4 official
+government sources**: NTA 13-digit Corporate IDs, EDINET XBRL financials (US GAAP / IFRS mapped),
+e-Stat industry benchmarks, and gBizINFO certifications. **Zero cloud leakage. Zero Docker.**
 
-This package is the **Free edition**: **192 large-cap blue-chip listed companies** (EDINET-listed).
-The full dataset — **3,193+ listed companies** with complete XBRL financials, major shareholders,
-gBizINFO details, and 財務省 法人企業統計調査 industry benchmarks — is available as a one-time
-purchase at **[mcporb.store](https://mcporb.store/orb-pages/japan-company-info)**.
+Query EDINET statutory filings (5-year XBRL), National Tax Agency 13-digit corporate numbers,
+major shareholders, and gBizINFO certifications/subsidies — with a built-in
+**J-GAAP / US GAAP / IFRS** mapping dictionary that correctly distinguishes
+営業利益 (Operating Income) from 経常利益 (Ordinary Income, a J-GAAP-only concept).
+
+This package is the **Free edition**: **192 large-cap blue-chip listed companies** (EDINET-listed,
+Nikkei 225 sample). The full dataset — **3,193+ listed companies** with complete XBRL financials,
+major shareholders, gBizINFO details, and 財務省 法人企業統計調査 industry benchmarks — is available
+as a one-time purchase at **[mcporb.store](https://mcporb.store/orb-pages/japan-company-info)**.
 
 > **Use cases:** cross-border equity analysis, KYB / due-diligence entity verification,
 > M&A target screening, and reading Japanese filings in English without mistranslating

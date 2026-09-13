@@ -2,5 +2,19 @@
   "$schema": "https://glama.ai/mcp/schema.json",
   "maintainers": [
     "dqj1998"
+  ],
+  "tools": [
+    {
+      "name": "edinet_financials_usgaap",
+      "description": "Search official EDINET statutory balance sheet, income statement, and executive compensation for Japanese listed companies, strictly mapped to US GAAP / IFRS. Covers 5-year XBRL financials with J-GAAP / US GAAP / IFRS accounting concept mapping (e.g. 経常利益 vs Operating Income vs Ordinary Income)."
+    },
+    {
+      "name": "japan_corporate_registry",
+      "description": "Query official 13-digit National Tax Agency (NTA) corporate identity, registered headquarters address, legal status, and METI gBizINFO certifications, subsidies, and commendations for any Japanese company."
+    },
+    {
+      "name": "japan_company_search",
+      "description": "Unified keyword, fuzzy, and semantic search across Japanese corporate registries and listed company filings. Supports search by company name (Japanese or English), securities code, corporate number, or any free-text query."
+    }
   ]
 }
