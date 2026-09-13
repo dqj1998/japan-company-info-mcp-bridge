@@ -39,6 +39,7 @@
     "url": "https://github.com/dqj1998/japan-company-info-mcp-bridge.git"
   },
   "scripts": {
+    "build": "node -e \"process.exit(0)\"",
     "start": "node index.js"
   }
 }
