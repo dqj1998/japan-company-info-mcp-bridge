@@ -70,8 +70,8 @@ npx .
 Bundled runtime binaries in `bin/`:
 
 - **macOS (Apple Silicon / arm64)** — `mcporb-runtime-darwin-arm64`
-- **Linux (x86-64)** — `mcporb-runtime-linux-x64` — requires `libdbus-1-3` at runtime (present on
-  most desktop/CI images; on minimal images run `apt-get install -y libdbus-1-3`).
+- **Linux (x86-64)** — `mcporb-runtime-linux-x64` — no external system libraries required (runs on
+  minimal/headless images).
 
 Other targets (Linux arm64, Windows, macOS Intel) aren't bundled yet. `index.js` resolves
 `mcporb-runtime-<platform>-<arch>` and exits with a clear message if no matching binary is found.
