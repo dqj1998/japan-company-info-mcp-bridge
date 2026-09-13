@@ -8,7 +8,7 @@ built-in **J-GAAP / US GAAP / IFRS** mapping dictionary.
 This package is the **Free edition**: **192 large-cap blue-chip listed companies** (EDINET-listed).
 The full dataset — **3,193+ listed companies** with complete XBRL financials, major shareholders,
 gBizINFO details, and 財務省 法人企業統計調査 industry benchmarks — is available as a one-time
-purchase at **[mcporb.store](https://mcporb.store/orb/japan-company-info)**.
+purchase at **[mcporb.store](https://mcporb.store/orb-pages/japan-company-info)**.
 
 > **Use cases:** cross-border equity analysis, KYB / due-diligence entity verification,
 > M&A target screening, and reading Japanese filings in English without mistranslating
@@ -91,7 +91,7 @@ English name (best-effort otherwise).
 
 > **Coverage note:** this Free edition indexes 192 blue-chip companies. Queries for companies
 > outside that set return the closest available matches; unlock the full 3,193+ company dataset
-> at [mcporb.store](https://mcporb.store/orb/japan-company-info).
+> at [mcporb.store](https://mcporb.store/orb-pages/japan-company-info).
 
 ---
 
