@@ -6,15 +6,66 @@
   "tools": [
     {
       "name": "edinet_financials_usgaap",
-      "description": "Search official EDINET statutory balance sheet, income statement, and executive compensation for Japanese listed companies, strictly mapped to US GAAP / IFRS. Covers 5-year XBRL financials with J-GAAP / US GAAP / IFRS accounting concept mapping (e.g. 経常利益 vs Operating Income vs Ordinary Income)."
+      "description": "Search official EDINET statutory balance sheet, income statement, and executive compensation for Japanese listed companies, strictly mapped to US GAAP / IFRS. Covers 5-year XBRL financials with J-GAAP / US GAAP / IFRS accounting concept mapping (e.g. 経常利益 vs Operating Income vs Ordinary Income).",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_name": {
+            "type": "string",
+            "description": "Company name in Japanese (e.g. トヨタ自動車) or English (e.g. Toyota Motor), or 13-digit NTA corporate number, or 4-digit securities code."
+          },
+          "metric": {
+            "type": "string",
+            "description": "Financial metric to retrieve, e.g. revenue, operating_income, net_income, total_assets, equity, executive_compensation. Accepts English GAAP terms or Japanese accounting terms."
+          },
+          "fiscal_year": {
+            "type": "integer",
+            "description": "Fiscal year (e.g. 2023). Omit to retrieve the latest available year."
+          }
+        },
+        "required": ["company_name"]
+      }
     },
     {
       "name": "japan_corporate_registry",
-      "description": "Query official 13-digit National Tax Agency (NTA) corporate identity, registered headquarters address, legal status, and METI gBizINFO certifications, subsidies, and commendations for any Japanese company."
+      "description": "Query official 13-digit National Tax Agency (NTA) corporate identity, registered headquarters address, legal status, and METI gBizINFO certifications, subsidies, and commendations for any Japanese company.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_name": {
+            "type": "string",
+            "description": "Company name in Japanese or English, or 13-digit NTA corporate number."
+          },
+          "info_type": {
+            "type": "string",
+            "description": "Type of registry information: identity, address, certifications, subsidies, commendations. Omit to retrieve all available information."
+          }
+        },
+        "required": ["company_name"]
+      }
     },
     {
       "name": "japan_company_search",
-      "description": "Unified keyword, fuzzy, and semantic search across Japanese corporate registries and listed company filings. Supports search by company name (Japanese or English), securities code, corporate number, or any free-text query."
+      "description": "Unified keyword, fuzzy, and semantic search across Japanese corporate registries and listed company filings. Supports search by company name (Japanese or English), securities code, corporate number, or any free-text query.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "Search query: company name, securities code, 13-digit corporate number, or free-text (e.g. '東京 半導体メーカー', 'semiconductor Tokyo')."
+          },
+          "method": {
+            "type": "string",
+            "enum": ["auto", "bm25", "trigram", "vector", "hybrid"],
+            "description": "Retrieval method. auto (default): system chooses best method. bm25: exact keyword. trigram: fuzzy / identifier matching. vector: semantic. hybrid: RRF fusion of bm25+vector."
+          },
+          "top_k": {
+            "type": "integer",
+            "description": "Maximum number of results to return (default 5, max 20)."
+          }
+        },
+        "required": ["query"]
+      }
     }
   ]
 }
