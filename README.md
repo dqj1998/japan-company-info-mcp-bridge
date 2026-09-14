@@ -29,11 +29,24 @@ semantic `vector` method; until that finishes — and forever after, offline —
 `trigram`, and `auto` methods work without any network access. Your queries are not sent to
 a third-party API by this server.
 
-It exposes one tool:
+It exposes four domain tools that normalize your request into a precise query, plus the
+generic `search_knowledge` tool as a fallback for open-ended questions:
 
-- **`search_knowledge(query, method?, top_k?)`** — search the corporate knowledge base.
+- **`edinet_financials_usgaap(company_name, metric?, fiscal_year?)`** — EDINET statutory
+  financials (P/L, balance sheet, cash flow) and executive compensation, with accounting
+  concepts mapped across J-GAAP / US GAAP / IFRS.
+- **`japan_corporate_registry(company_name, info_type?)`** — 13-digit National Tax Agency
+  corporate number, registered address, legal status, and gBizINFO certifications / subsidies.
+- **`japan_shareholders(company_name, top_n?)`** — major shareholders and ownership
+  structure from the 大株主 section of 有価証券報告書.
+- **`japan_company_search(query, method?, top_k?)`** — keyword / fuzzy / semantic search to
+  discover a company when the target is unknown or ambiguous.
+- **`search_knowledge(query, method?, top_k?)`** — raw knowledge-base search (fallback).
   `method` ∈ `auto` (default) · `bm25` (exact keyword) · `trigram` (fuzzy / identifier) ·
   `vector` (semantic) · `hybrid` (RRF fusion).
+
+The four domain tools resolve into `search_knowledge` internally, so retrieval and the
+`.orb` capsule stay completely generic.
 
 ---
 

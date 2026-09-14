@@ -45,6 +45,24 @@
       }
     },
     {
+      "name": "japan_shareholders",
+      "description": "Retrieve the major shareholders and ownership structure of a Japanese listed company from its EDINET 有価証券報告書 filing: top shareholders with shares held and ownership percentage, plus total shares outstanding, from the 大株主 section of the XBRL filing.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "company_name": {
+            "type": "string",
+            "description": "Japanese or English company name, 13-digit corporate number, or 4-digit securities code. A 13-digit number or Japanese name resolves most reliably."
+          },
+          "top_n": {
+            "type": "integer",
+            "description": "Number of top shareholders to return (default 10)."
+          }
+        },
+        "required": ["company_name"]
+      }
+    },
+    {
       "name": "japan_company_search",
       "description": "Unified keyword, fuzzy, and semantic search across Japanese corporate registries and listed company filings. Supports search by company name (Japanese or English), securities code, corporate number, or any free-text query.",
       "inputSchema": {
