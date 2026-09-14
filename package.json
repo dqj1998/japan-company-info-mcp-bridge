@@ -1,6 +1,6 @@
 {
   "name": "japan-company-info-mcp-bridge",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "MCP stdio server for verified Japanese corporate data (EDINET XBRL financials, National Tax Agency corporate numbers, gBizINFO) — Free edition, 192 blue-chip listed companies. Bridges the bundled mcporb-runtime.",
   "license": "MIT",
   "type": "commonjs",

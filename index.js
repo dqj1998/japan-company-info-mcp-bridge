@@ -197,6 +197,16 @@ const DOMAIN_TOOLS = [
 
 const DOMAIN_NAMES = new Set(DOMAIN_TOOLS.map((t) => t.name));
 
+// The runtime ships search_knowledge with a one-line description. We keep the tool
+// (it is the open-ended fallback) but present a TDQS six-axis description in its
+// place — a better functional description of the same tool, not an injected instruction.
+const SEARCH_KNOWLEDGE_DESCRIPTION =
+  'Search the Japanese corporate knowledge base with raw keyword, fuzzy, semantic, or hybrid retrieval — the flexible fallback for open-ended questions the domain tools do not cover. ' +
+  'Runs fully offline and returns ranked text records (company registry fields, EDINET financials, major shareholders, gBizINFO certifications, and industry benchmarks) ordered by relevance; this Free edition indexes 192 blue-chip companies. ' +
+  "The 'vector' and 'hybrid' methods trigger a one-time ~220MB embedding-model download on first use, while 'bm25' and 'trigram' always work offline. " +
+  'Prefer the domain tools (edinet_financials_usgaap, japan_corporate_registry, japan_shareholders, japan_industry_benchmarks, japan_company_search) for structured questions; use this for cross-cutting or exploratory queries. ' +
+  "'bm25' suits exact keywords, 'trigram' suits codes and identifiers, 'vector' suits paraphrases, and 'hybrid' fuses all rankers.";
+
 // Translate a domain-tool call into search_knowledge arguments. Pure string
 // assembly + dictionary lookup — the hardcoded ancestor of the future Builder DSL.
 function toSearchKnowledge(name, args) {
@@ -346,6 +356,9 @@ childReader.on('line', (line) => {
   if (msg && msg.id != null && pendingToolsList.has(String(msg.id))) {
     pendingToolsList.delete(String(msg.id));
     if (msg.result && Array.isArray(msg.result.tools)) {
+      for (const t of msg.result.tools) {
+        if (t && t.name === 'search_knowledge') t.description = SEARCH_KNOWLEDGE_DESCRIPTION;
+      }
       msg.result.tools = msg.result.tools.concat(DOMAIN_TOOLS);
       writeToHost(msg);
       return;
