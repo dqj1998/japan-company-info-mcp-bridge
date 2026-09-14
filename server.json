@@ -2,7 +2,7 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.dqj1998/japan-company-info-mcp-bridge",
   "description": "Offline MCP for verified Japanese corporate data: EDINET XBRL financials, NTA IDs, gBizINFO.",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "repository": {
     "url": "https://github.com/dqj1998/japan-company-info-mcp-bridge",
     "source": "github"
@@ -13,7 +13,7 @@
       "registryType": "npm",
       "registryBaseUrl": "https://registry.npmjs.org",
       "identifier": "japan-company-info-mcp-bridge",
-      "version": "1.2.1",
+      "version": "1.2.2",
       "runtimeHint": "npx",
       "transport": {
         "type": "stdio"
@@ -23,16 +23,47 @@
   "_meta": {
     "io.modelcontextprotocol.registry/publisher-provided": {
       "edition": "free",
-      "categories": ["finance", "data"],
-      "tags": ["japan", "edinet", "xbrl", "us-gaap", "ifrs", "due-diligence", "kyb", "gbizinfo", "offline"],
+      "categories": [
+        "finance",
+        "data"
+      ],
+      "tags": [
+        "japan",
+        "edinet",
+        "xbrl",
+        "us-gaap",
+        "ifrs",
+        "due-diligence",
+        "kyb",
+        "gbizinfo",
+        "offline"
+      ],
       "coverage": "192 blue-chip listed companies (free); full 3,193+ dataset via one-time purchase at mcporb.store",
       "tools": [
-        { "name": "edinet_financials_usgaap", "summary": "EDINET XBRL financials (P/L, balance sheet, cash flow, executive comp) mapped across J-GAAP / US-GAAP / IFRS." },
-        { "name": "japan_corporate_registry", "summary": "NTA 13-digit corporate number, registered address, legal status, and gBizINFO certifications/subsidies." },
-        { "name": "japan_shareholders", "summary": "Major shareholders and ownership structure from the 大株主 section of 有価証券報告書." },
-        { "name": "japan_industry_benchmarks", "summary": "Sector benchmarks (operating/ordinary margin, equity ratio, ROE) from 財務省 法人企業統計調査 via e-Stat." },
-        { "name": "japan_company_search", "summary": "Keyword / fuzzy / semantic company discovery by name, securities code, or corporate number." },
-        { "name": "search_knowledge", "summary": "Raw knowledge-base search (bm25 / trigram / vector / hybrid) — fallback for open-ended questions." }
+        {
+          "name": "edinet_financials_usgaap",
+          "summary": "EDINET XBRL financials (P/L, balance sheet, cash flow, executive comp) mapped across J-GAAP / US-GAAP / IFRS."
+        },
+        {
+          "name": "japan_corporate_registry",
+          "summary": "NTA 13-digit corporate number, registered address, legal status, and gBizINFO certifications/subsidies."
+        },
+        {
+          "name": "japan_shareholders",
+          "summary": "Major shareholders and ownership structure from the 大株主 section of 有価証券報告書."
+        },
+        {
+          "name": "japan_industry_benchmarks",
+          "summary": "Sector benchmarks (operating/ordinary margin, equity ratio, ROE) from 財務省 法人企業統計調査 via e-Stat."
+        },
+        {
+          "name": "japan_company_search",
+          "summary": "Keyword / fuzzy / semantic company discovery by name, securities code, or corporate number."
+        },
+        {
+          "name": "search_knowledge",
+          "summary": "Raw knowledge-base search (bm25 / trigram / vector / hybrid) — fallback for open-ended questions."
+        }
       ]
     }
   }

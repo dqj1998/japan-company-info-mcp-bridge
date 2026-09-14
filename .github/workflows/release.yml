@@ -62,3 +62,25 @@ jobs:
         run: npm publish --access public
         env:
           NPM_CONFIG_PROVENANCE: 'true'
+
+      # --- Register the server on the Official MCP Registry (OIDC, io.github.* namespace) ---
+      - name: Install mcp-publisher
+        run: |
+          curl -L "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+
+      - name: Wait for npm to expose the new version (registry validates against npm)
+        run: |
+          V="$(node -p "require('./package.json').version")"
+          for i in $(seq 1 30); do
+            if curl -sf "https://registry.npmjs.org/japan-company-info-mcp-bridge/$V" >/dev/null; then
+              echo "npm has $V"; exit 0
+            fi
+            echo "waiting for npm to expose $V ($i/30)"; sleep 5
+          done
+          echo "::error::npm did not expose $V within timeout"; exit 1
+
+      - name: Authenticate to MCP Registry (OIDC)
+        run: ./mcp-publisher login github-oidc
+
+      - name: Publish server to MCP Registry
+        run: ./mcp-publisher publish
