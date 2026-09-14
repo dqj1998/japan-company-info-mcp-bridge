@@ -52,6 +52,7 @@
     "prepare:runtime": "node scripts/prepare-runtime-packages.mjs",
     "publish:runtime": "bash scripts/publish-runtime-packages.sh",
     "smoke": "node scripts/smoke-test.mjs",
-    "test": "npm run prepare:runtime && node scripts/smoke-test.mjs"
+    "test": "npm run prepare:runtime && node scripts/smoke-test.mjs",
+    "version": "node scripts/sync-optional-deps.mjs && git add package.json"
   }
 }
