@@ -53,6 +53,7 @@
     "publish:runtime": "bash scripts/publish-runtime-packages.sh",
     "smoke": "node scripts/smoke-test.mjs",
     "test": "npm run prepare:runtime && node scripts/smoke-test.mjs",
-    "version": "node scripts/sync-optional-deps.mjs && git add package.json server.json"
+    "version": "node scripts/sync-optional-deps.mjs && git add package.json server.json",
+    "check:listings": "bash scripts/check-listings.sh"
   }
 }
