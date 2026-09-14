@@ -259,9 +259,20 @@ function toSearchKnowledge(name, args) {
 
 function resolveRuntime() {
   const ext = process.platform === 'win32' ? '.exe' : '';
+  const binName = `mcporb-runtime${ext}`;
+  // 1) Per-platform optional dependency: `npm i` pulls only the binary matching
+  //    this host's os/cpu (see optionalDependencies in package.json), so the npm
+  //    tarball stays small instead of bundling all four platform binaries.
+  const pkg = `@dqj1998/japan-company-info-mcp-bridge-${process.platform}-${process.arch}`;
+  try {
+    return require.resolve(`${pkg}/${binName}`);
+  } catch (_) {
+    // Optional dep not installed for this platform — fall through to bundled bin/.
+  }
+  // 2) Bundled fallback: from-clone dev and npx-from-GitHub ship bin/ directly.
   const specific = path.join(RUNTIME_DIR, `mcporb-runtime-${process.platform}-${process.arch}${ext}`);
   if (fs.existsSync(specific)) return specific;
-  const generic = path.join(RUNTIME_DIR, `mcporb-runtime${ext}`);
+  const generic = path.join(RUNTIME_DIR, binName);
   if (fs.existsSync(generic)) return generic;
   return null;
 }

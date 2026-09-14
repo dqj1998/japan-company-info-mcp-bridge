@@ -11,4 +11,8 @@ node_modules/
 .env.*
 
 # NOTE: bin/ (runtime binaries) and assets/ (Orb bundle) are INTENTIONALLY
-# committed — npx-from-GitHub and npm publish both require them at runtime.
+# committed — npx-from-GitHub relies on bin/ (npm-published tarball no longer does;
+# it uses per-platform optionalDependencies instead — see index.js resolveRuntime).
+
+# Generated per-platform runtime packages (materialized from bin/ at publish time)
+runtime-packages/

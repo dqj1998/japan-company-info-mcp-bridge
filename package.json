@@ -3,6 +3,7 @@
   "version": "1.2.1",
   "description": "MCP stdio server for verified Japanese corporate data (EDINET XBRL financials, National Tax Agency corporate numbers, gBizINFO) — Free edition, 192 blue-chip listed companies. Bridges the bundled mcporb-runtime.",
   "license": "MIT",
+  "mcpName": "io.github.dqj1998/japan-company-info-mcp-bridge",
   "type": "commonjs",
   "main": "index.js",
   "bin": {
@@ -10,12 +11,19 @@
   },
   "files": [
     "index.js",
-    "bin/",
     "assets/",
     "glama.json",
+    "server.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "NOTICE"
   ],
+  "optionalDependencies": {
+    "@dqj1998/japan-company-info-mcp-bridge-darwin-arm64": "1.2.1",
+    "@dqj1998/japan-company-info-mcp-bridge-linux-arm64": "1.2.1",
+    "@dqj1998/japan-company-info-mcp-bridge-linux-x64": "1.2.1",
+    "@dqj1998/japan-company-info-mcp-bridge-win32-x64": "1.2.1"
+  },
   "engines": {
     "node": ">=18"
   },
@@ -36,10 +44,14 @@
   "homepage": "https://mcporb.store/orb-pages/japan-company-info",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dqj1998/japan-company-info-mcp-bridge.git"
+    "url": "git+https://github.com/dqj1998/japan-company-info-mcp-bridge.git"
   },
   "scripts": {
     "build": "node -e \"process.exit(0)\"",
-    "start": "node index.js"
+    "start": "node index.js",
+    "prepare:runtime": "node scripts/prepare-runtime-packages.mjs",
+    "publish:runtime": "bash scripts/publish-runtime-packages.sh",
+    "smoke": "node scripts/smoke-test.mjs",
+    "test": "npm run prepare:runtime && node scripts/smoke-test.mjs"
   }
 }
