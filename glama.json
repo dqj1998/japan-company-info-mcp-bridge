@@ -63,6 +63,24 @@
       }
     },
     {
+      "name": "japan_industry_benchmarks",
+      "description": "Retrieve sector-level financial benchmarks for Japanese industries from the 財務省 法人企業統計調査 (Ministry of Finance Corporate Enterprise Statistics Survey) via e-Stat: operating margin, ordinary margin, equity ratio, and ROE by industry and data year. Use to benchmark a company against its sector.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "industry": {
+            "type": "string",
+            "description": "Industry / sector name, preferably the Japanese 業種 label (e.g. '輸送用機械器具製造業', '情報通信業')."
+          },
+          "metric": {
+            "type": "string",
+            "description": "Optional benchmark metric: 'operating_margin', 'ordinary_margin', 'equity_ratio', or 'roe'. Omit to return all available metrics."
+          }
+        },
+        "required": ["industry"]
+      }
+    },
+    {
       "name": "japan_company_search",
       "description": "Unified keyword, fuzzy, and semantic search across Japanese corporate registries and listed company filings. Supports search by company name (Japanese or English), securities code, corporate number, or any free-text query.",
       "inputSchema": {

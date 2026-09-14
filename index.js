@@ -28,7 +28,10 @@ const GAAP_MAP = {
   net_sales: '売上高',
   operating_income: '営業利益',
   operating_profit: '営業利益',
-  operating_margin: '営業利益率',
+  operating_margin: '売上高営業利益率',
+  ordinary_margin: '売上高経常利益率',
+  equity_ratio: '自己資本比率',
+  roe: '自己資本ROE',
   ordinary_income: '経常利益',
   net_income: '当期純利益',
   profit: '当期純利益',
@@ -139,6 +142,29 @@ const DOMAIN_TOOLS = [
     },
   },
   {
+    name: 'japan_industry_benchmarks',
+    description:
+      'Retrieve sector-level financial benchmarks for Japanese industries from the 財務省 法人企業統計調査 (Ministry of Finance Corporate Enterprise Statistics Survey): operating margin (売上高営業利益率), ordinary margin (売上高経常利益率), equity ratio (自己資本比率), and ROE (自己資本ROE) by industry and data year. ' +
+      'Runs fully offline and returns the benchmark row(s) for the requested industry with the available metrics and their data year, sourced from the Ministry of Finance survey via e-Stat; this Free edition includes a subset of industries. ' +
+      "Use this to benchmark a company's profitability against its sector — pair it with edinet_financials_usgaap to pull the company's own figures, then compare. Provide the industry name, preferably the Japanese 業種 label (e.g. '輸送用機械器具製造業', '純粋持株会社').",
+    inputSchema: {
+      type: 'object',
+      properties: {
+        industry: {
+          type: 'string',
+          description:
+            "Industry / sector name, preferably the Japanese 業種 label (e.g. '輸送用機械器具製造業', '情報通信業'). English sector names are searched as-is.",
+        },
+        metric: {
+          type: 'string',
+          description:
+            "Optional benchmark metric to focus on: 'operating_margin', 'ordinary_margin', 'equity_ratio', or 'roe' (English or Japanese). Omit to return all available benchmark metrics.",
+        },
+      },
+      required: ['industry'],
+    },
+  },
+  {
     name: 'japan_company_search',
     description:
       'Search across Japanese corporate registries and listed-company filings by name, securities code, corporate number, or free-text intent — the entry point when the target company is unknown or ambiguous. ' +
@@ -197,6 +223,18 @@ function toSearchKnowledge(name, args) {
         .join(' ');
       const topN = Number.isInteger(args.top_n) ? args.top_n : 10;
       return { query, method: 'hybrid', top_k: Math.max(1, Math.min(topN, 20)) };
+    }
+    case 'japan_industry_benchmarks': {
+      const industry = (args.industry || '').toString().trim();
+      const metric = mapMetric(args.metric);
+      const query = [
+        industry,
+        metric,
+        '業種別 売上高営業利益率 売上高経常利益率 自己資本比率 法人企業統計調査',
+      ]
+        .filter(Boolean)
+        .join(' ');
+      return { query, method: 'hybrid', top_k: 3 };
     }
     case 'japan_company_search': {
       const out = { query: (args.query || '').toString() };
